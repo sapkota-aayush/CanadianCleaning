@@ -12,6 +12,18 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+# settings.py
+import os
+from dotenv import load_dotenv
+
+# Load environment variables first!
+load_dotenv()  # ← This looks for .env file
+
+# Secret key configuration
+SECRET_KEY = os.getenv('phgn@$7vghv&qf&(m*n&k26n^t+07l_*4lstx!ex6*3*t6&ulg')  # ← Gets from .env (local) or Heroku (production)
+
+# Rest of your settings...
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
