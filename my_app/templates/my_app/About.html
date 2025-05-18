@@ -1,0 +1,90 @@
+{% extends 'my_app/base.html' %} {% block title %}About Us{% endblock title %}
+{% block main-content %}
+<section class="about-hero-section py-5 bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7 mb-4 mb-lg-0">
+        <h1
+          class="display-4 fw-bold mb-3 text-primary animate__animated animate__fadeInDown"
+        >
+          About SparkClean
+        </h1>
+        <p class="lead text-dark animate__animated animate__fadeInUp">
+          We are a local, 2nd generation family business that has served in our
+          community for over <strong>35 years</strong>.
+        </p>
+      </div>
+      <div class="col-lg-5 text-center">
+        <img
+          src="https://img.freepik.com/free-vector/cleaning-service-concept-illustration_114360-1126.jpg?w=500"
+          alt="About SparkClean"
+          class="img-fluid rounded shadow animate__animated animate__zoomIn"
+          style="max-width: 340px"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-values-section py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div
+          class="about-card h-100 p-4 shadow-sm rounded bg-white animate__animated animate__fadeInLeft"
+        >
+          <h4 class="fw-bold text-primary mb-3">
+            <i class="bi bi-people-fill me-2"></i>Our Commitment to Customers
+          </h4>
+          <ul class="mb-0 ps-3">
+            <li>Safe work habits</li>
+            <li>Getting the job done to the best of our ability</li>
+            <li>Going the extra step to serve our customers</li>
+            <li>Always working with a friendly atmosphere</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div
+          class="about-card h-100 p-4 shadow-sm rounded bg-white animate__animated animate__fadeInRight"
+        >
+          <h4 class="fw-bold text-success mb-3">
+            <i class="bi bi-leaf me-2"></i>Our Commitment to the Environment
+          </h4>
+          <ul class="mb-0 ps-3">
+            <li>Use only environmentally friendly products</li>
+            <li>No unnecessary waste of natural elements such as water</li>
+            <li>Minimize the impact of our activities on the environment</li>
+            <li>Use responsible products, practices, and partners</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-12 mt-4">
+        <div
+          class="about-card h-100 p-4 shadow-sm rounded bg-white animate__animated animate__fadeInUp"
+        >
+          <h4 class="fw-bold text-info mb-3">
+            <i class="bi bi-people me-2"></i>Our Commitment to Inclusion
+          </h4>
+          <p class="mb-0">
+            We are committed to providing a respectful, welcoming, accessible
+            and inclusive environment for all persons.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-hero-section {
+    background: linear-gradient(90deg, #e3f6ff 0%, #f8fafc 100%);
+  }
+  .about-card {
+    transition: box-shadow 0.3s;
+  }
+  .about-card:hover {
+    box-shadow: 0 8px 32px 0 rgba(13, 110, 253, 0.12);
+  }
+</style>
+{% endblock main-content %}

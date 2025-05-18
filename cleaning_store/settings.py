@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-
+from dotenv import load_dotenv
 # settings.py
 import os
-from dotenv import load_dotenv
+
 
 # Load environment variables first!
 load_dotenv()  # ← This looks for .env file
