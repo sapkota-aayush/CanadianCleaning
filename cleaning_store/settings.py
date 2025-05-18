@@ -15,6 +15,15 @@ from dotenv import load_dotenv
 # settings.py
 import os
 
+import dj_database_url
+import os
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
+}
+
 
 # Load environment variables first!
 load_dotenv()  # ← This looks for .env file
