@@ -20,7 +20,7 @@ import os
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
+        default='postgres://postgres:Happy@890123@localhost:5432/django_db1'
     )
 }
 

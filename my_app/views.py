@@ -56,3 +56,8 @@ def contact(request):
                 form=ContactForm()
                 
     return render(request, 'my_app/contact.html', {'form': form})
+
+
+
+def testimonial(request):
+    return render(request, 'my_app/testimonial.html')
