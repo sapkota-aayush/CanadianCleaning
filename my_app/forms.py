@@ -14,3 +14,13 @@ class ServiceForm(forms.ModelForm):
             'special_requests': forms.Textarea(attrs={'class': 'form-control'}),
             'discount_coupon': forms.TextInput(attrs={'class': 'form-control'}),
         }    
+        
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model=ContactMessage
+        fields=['name','email','message']
+        widgets={
+            'name':forms.TextInput(attrs={'class':'form-control'}),
+            'email':forms.EmailInput(attrs={'class':'form-control'}),
+            'message':forms.Textarea(attrs={'class':'form-control','rows':4}),
+        }

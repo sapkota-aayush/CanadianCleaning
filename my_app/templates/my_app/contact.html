@@ -1,0 +1,51 @@
+{% extends 'my_app/base.html' %} {% block title %}Contact Us{% endblock title %}
+{% block main-content %}
+<section class="contact-section py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-5">
+            <h2 class="mb-4 fw-bold text-primary text-center">Get in Touch</h2>
+            <p class="mb-4 text-center text-muted">
+              Have a question or want to request a quote? Fill out the form
+              below and our team will get back to you soon.
+            </p>
+            {% if messages %} {% for message in messages %}
+            <div class="alert alert-success text-center">{{ message }}</div>
+            {% endfor %} {% endif %}
+            <form method="post" novalidate>
+              {% csrf_token %} {% for field in form %}
+              <div class="mb-3">
+                <label class="form-label fw-semibold">{{ field.label }}</label>
+                {{ field }} {% if field.help_text %}
+                <div class="form-text">{{ field.help_text }}</div>
+                {% endif %} {% for error in field.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+              </div>
+              {% endfor %}
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .contact-section {
+    background: linear-gradient(90deg, #e3f6ff 0%, #f8fafc 100%);
+  }
+  .card {
+    border-radius: 1.2rem;
+  }
+  .form-label {
+    color: #0d6efd;
+  }
+</style>
+{% endblock main-content %}
