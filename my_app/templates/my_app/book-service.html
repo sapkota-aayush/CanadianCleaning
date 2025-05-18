@@ -1,0 +1,75 @@
+{% extends 'my_app/base.html' %}
+<!---->
+{% block title %}Book a Service{% endblock title %} {% block main-content %}
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-5">
+            <h2 class="mb-4 fw-bold text-primary text-center">
+              Book a Cleaning Service
+            </h2>
+            <p class="mb-4 text-center text-muted">
+              Fill out the form below and our team will get in touch to confirm
+              your booking.
+            </p>
+            {% if submitted %}
+            <div class="alert alert-success text-center">
+              Your booking has been submitted! We will contact you soon.
+            </div>
+            {% endif %}
+            <form method="post" novalidate>
+              {% csrf_token %} {% for field in form %}
+              <div class="mb-3">
+                <label class="form-label fw-semibold">{{ field.label }}</label>
+                {{ field }} {% if field.help_text %}
+                <div class="form-text">{{ field.help_text }}</div>
+                {% endif %} {% for error in field.errors %}
+                <div class="text-danger small">{{ error }}</div>
+                {% endfor %}
+              </div>
+              {% endfor %}
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  Book Now
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Select2 CSS & JS (for a scrollable, searchable select) -->
+<link
+  href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+  rel="stylesheet"
+/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $(".service-select").select2({
+      width: "100%",
+      placeholder: "Select a service",
+    });
+  });
+</script>
+
+<style>
+  .card {
+    border-radius: 1.2rem;
+  }
+  .form-label {
+    color: #0d6efd;
+  }
+  textarea.form-control {
+    max-height: 150px;
+    overflow-y: auto;
+    resize: vertical;
+  }
+</style>
+{% endblock main-content %}
