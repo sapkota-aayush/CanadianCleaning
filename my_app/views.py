@@ -5,7 +5,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import redirect
-
+import time
+from .tasks import send_email_task
 # Create your views here.
 
 def home(request):
@@ -32,29 +33,23 @@ def book_service(request):
     return render(request, 'my_app/book-service.html', {'form': form}) 
 
 def contact(request):
-    if request.method=='POST':
-        form=ContactForm(request.POST)
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
         if form.is_valid():
-            contact=form.save(commit=False)
-            
+            contact = form.save(commit=False)
             try:
-                send_mail(
-                    subject=f"New message from {contact.name} ({contact.email})",
-                    message=contact.message,
-                    from_email=settings.EMAIL_HOST_USER,
-                    recipient_list=[settings.EMAIL_HOST_USER],
-                    fail_silently=False,
-                )
+                send_email_task.delay(contact.name, contact.email, contact.message)  # async call
+
                 contact.save()
-                messages.success(request,"Your message has been sent successfully.")
+                messages.success(request, "Your message has been sent successfully.")
                 return redirect('home')
             except Exception as e:
-                messages.error(request,f"Error sending email: {e}")
+                messages.error(request, f"Error sending email: {e}")
         else:
-                messages.error(request,"Please correct the errors below.")
+            messages.error(request, "Please correct the errors below.")
     else:
-                form=ContactForm()
-                
+        form = ContactForm()
+
     return render(request, 'my_app/contact.html', {'form': form})
 
 
